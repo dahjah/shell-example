@@ -8,9 +8,15 @@ spec:
     spec:
       template:
         spec:
+          volumes:
+            - name: task-pv-storage
+              persistentVolumeClaim:
+                claimName: pvc-56be60fa-bf4a-45d0-bebb-c29c8082b048
           containers:
           - name: hello
             image: busybox
+            volumeMounts:
+             - montPath: "/sync"
             args:
             - /bin/sh
             - -c
