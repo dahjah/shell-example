@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+    name: clone-of-reports
+    namespace: jhub
+spec:
+  accessModes:
+  - ReadWriteMany
+  storageClassName: cloning
+  resources:
+    requests:
+      storage: 10Gi
+  dataSource:
+    kind: PersistentVolumeClaim
+    name: pvc-fa89b6a2-e5c8-4343-9e07-4d235a777d04
