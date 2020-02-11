@@ -1,0 +1,25 @@
+apiVersion: batch/v1beta1
+kind: CronJob
+metadata:
+  name: hello
+spec:
+  schedule: "*/1 * * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          volumes:
+            - name: task-pv-storage
+              persistentVolumeClaim:
+                claimName: pvc-56be60fa-bf4a-45d0-bebb-c29c8082b048
+          containers:
+          - name: hello
+            image: busybox
+            volumeMounts:
+             - mountPath: "/sync"
+               name: task-pv-storage
+            args:
+            - /bin/sh
+            - -c
+            - date; echo Hello from the Kubernetes cluster
+          restartPolicy: OnFailure
