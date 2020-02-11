@@ -16,7 +16,8 @@ spec:
           - name: hello
             image: busybox
             volumeMounts:
-             - montPath: "/sync"
+             - mountPath: "/sync"
+               name: task-pv-storage
             args:
             - /bin/sh
             - -c
